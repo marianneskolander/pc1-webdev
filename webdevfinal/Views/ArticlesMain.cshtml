@@ -1,0 +1,44 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.ArticlesMain>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "MasterLayout.cshtml";
+}
+
+
+	
+	
+	<div class="row">
+    <div class="col-md-4">
+        <h2>Artikler</h2>
+        <p>
+            @Umbraco.Field("mainContent")
+        </p>
+        
+    </div>
+    <div class="col-md-4">
+        <h2>Artikler</h2>
+
+@{
+	var selection = CurrentPage.Site().FirstChild("articlesMain").Children.Where("Visible");
+}
+<ul>
+	@foreach(var item in selection){
+		<li>
+			<a href="@item.Url">@item.Name</a>
+		</li>
+	}
+</ul>
+
+
+</ul>      
+
+    </div>
+    <div class="col-md-4">
+        <h2>Posuere lacinia</h2>
+        <p>Urna mauris vulputate dolor, vel varius tincidunt lorem urna ut, pellentesque sodales mi pulvinar, dui a egestas, morbi nullam et aenean pharetra. Sit consectetur non, amet arcu nulla, sit porta</p>
+        
+			@Umbraco.RenderMacro("childpages")
+    </div>
+</div>
+
+

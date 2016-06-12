@@ -1,0 +1,57 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "MasterLayout.cshtml";
+}
+
+
+<div class="row">
+	<div class="col-md-4">
+        <h2>@Umbraco.Field("spalte1Overkrift")</h2>
+        @Umbraco.Field("mainContent")
+<p>navigation macro:</p>
+@Umbraco.RenderMacro("Navigation1")
+</ul>
+        <p><a class="btn btn-default" href="/om">Læs mere her</a></p>
+    </div>
+   <div class="col-md-4">
+        <h2>@Umbraco.Field("spalte2Overskrift")</h2>
+        <p>@Umbraco.Field("spalte2Indhold")</p>
+	   
+@{
+	var selectiona = CurrentPage.Site().FirstChild("articlesMain").Children.Where("Visible");
+}
+<ul>
+	@foreach(var item in selectiona){
+		<li>
+			<a href="@item.Url">@item.Name</a>
+		</li>
+	}
+</ul>
+
+
+        <p><a class="btn btn-default" href="/artikler">Læs mere her</a></p>
+    </div><div class="col-md-4">
+        <h2>@Umbraco.Field("spalte3Overskrift")</h2>
+        <p>@Umbraco.Field("spalte3Indhold")</p>   
+		
+
+@{
+	var selectionp = CurrentPage.Site().FirstChild("projectsMain").Children.Where("Visible");
+}
+<ul>
+	@foreach(var item in selectionp){
+		<li>
+			<a href="@item.Url">@item.Name</a>
+		</li>
+	}
+</ul>
+
+
+</ul>
+
+
+        <p><a class="btn btn-default" href="/projekter">Læs mere</a></p>
+    </div>
+</div>
+

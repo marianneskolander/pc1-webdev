@@ -1,0 +1,115 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Umbraco.Field("siteTitle")</title>  
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>				
+				
+	    <nav id="myNavbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Aarhus WebDev</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/om">Om Aarhus WebDev</a></li>
+                    <li><a href="/contact-us">Kontakt</a></li>
+					
+                    	<li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Artikler <b class="caret"></b></a>
+                        <ul class="dropdown-menu">							
+						@{
+						var aselection = CurrentPage.Site().FirstChild("articlesMain").Children.Where("Visible");
+						}
+							@foreach(var item in aselection){
+							<li class="dropdown">
+							<a href="@item.Url">@item.Name</a>
+							</li>
+							}
+                    	</li>
+						</ul>									
+                		
+							
+							<li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Projekter <b class="caret"></b></a>
+                        <ul class="dropdown-menu">							
+						@{
+						var pselection = CurrentPage.Site().FirstChild("projectsMain").Children.Where("Visible");
+						}
+							@foreach(var item in pselection){
+							<li class="dropdown">
+							<a href="@item.Url">@item.Name</a>
+							</li>
+							}
+                    	</li>
+						</ul>									
+                		</ul>
+							
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Member <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/memberlogin">Login</a></li>
+                            <li><a href="#">Mere senere</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Noget her</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </nav>
+</div>
+			
+				
+				
+				
+				
+				
+				
+    <div class="container body-content">
+
+	
+
+</ul>
+
+	
+
+		
+		
+		
+        <div class="jumbotron">
+    <h1>Aarhus WebDev</h1>
+    <p class="lead">Marianne's Umbraco Opgave </p>
+    <p><a href="/artikler" class="btn btn-primary btn-lg">Artikler</a></p>
+</div>
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>@DateTime.Now.Year - - @Umbraco.Field("footer")
+        </footer>
+    </div>
+    
+    <script src="~/Scripts/jquery-2.2.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    
+</body>
+</html>
+		
